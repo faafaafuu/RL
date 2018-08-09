@@ -1,10 +1,6 @@
 import React from 'react'
-import ReactDOM, {render} from 'react-dom'
-import ArtList from './ArtList'
-import {articles} from './fixtures'
-import Review from './Review'
+import Section from './Section'
+import {render} from 'react-dom'
+import {sections} from './fixtures'
 
-render(
-  <ArtList articles = {articles}/>,
-  document.getElementById('container')
-)
+render(<Section section={sections[0]}/>, document.getElementById('container'))
