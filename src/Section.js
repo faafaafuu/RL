@@ -1,36 +1,34 @@
 import React, {Component} from 'react'
+import ComList from './CommentList'
+
 
 export default class Section extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      openSec: false
+      secOpen: false
     }
   }
-  //при ооп подходе обязательно рэндэр
   render() {
-    console.log(this.props)
     const {section} = this.props
-    const {openSec} = this.state
+    const {secOpen} = this.state
     return (
       <div>
         <h2>{section.title}</h2>
-        <button onClick={this.openSecToggle}>{openSec ? 'close':'open'}</button>
-        {this.getSecitonBody()}
+        <button onClick={this.seccitonToggle}>{secOpen ? '-' : '+'}</button>
+        {this.getSecText()}
       </div>
     )
   }
-
-  getSecitonBody() {
-    if(!this.state.openSec) return null
+  getSecText() {
+    if(!this.state.secOpen) return null
     const {section} = this.props
-    return <section>{section.text}</section>
+    console.log(section)
+    return <section>{section.text} <ComList comments={section.comments}/></section>
   }
-   // если записать как ar/func то this будет привязан к инстэнсу
-  openSecToggle = () => {
-    this.setState({
-      openSec: !this.state.openSec
+  seccitonToggle = () => {
+    this.setState ({
+      secOpen: !this.state.secOpen
     })
   }
- 
 }

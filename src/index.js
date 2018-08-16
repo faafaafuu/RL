@@ -1,6 +1,7 @@
 import React from 'react'
 import Section from './Section'
+import SectionList from './SectionList'
 import {render} from 'react-dom'
 import {sections} from './fixtures'
 
-render(<Section section={sections[0]}/>, document.getElementById('container'))
+render(<SectionList sections={sections}/>, document.getElementById('container'))
