@@ -1,34 +1,52 @@
 import React, {Component} from 'react'
 import ComList from './CommentList'
 
-
 export default class Section extends Component {
-  constructor(props) {
+  constructor(props){
     super(props)
     this.state = {
-      secOpen: false
+      isOpen: false
     }
   }
   render() {
     const {section} = this.props
-    const {secOpen} = this.state
+    const {isOpen} = this.state
     return (
       <div>
-        <h2>{section.title}</h2>
-        <button onClick={this.seccitonToggle}>{secOpen ? '-' : '+'}</button>
+        <h3>{section.title}</h3>
+        <button className="btn btn-primary" onClick={this.btnHandler}>
+          {isOpen ? 'Hide' : 'Open'}
+        </button>
         {this.getSecText()}
       </div>
     )
   }
   getSecText() {
-    if(!this.state.secOpen) return null
+
+    if(!this.state.isOpen) return null
     const {section} = this.props
-    console.log(section)
-    return <section>{section.text} <ComList comments={section.comments}/></section>
+    const comments = section.comments
+
+    return (
+      <div>
+        <section>{section.text} {this.getComment()}</section>
+      </div>
+    )
   }
-  seccitonToggle = () => {
-    this.setState ({
-      secOpen: !this.state.secOpen
+  getComment() {
+    const {section} = this.props
+    const comments = section.comments
+    if(!comments || comments.length == 0) {
+    return <strong>There is no comments.</strong>
+    }
+    else{
+      return <ComList comments={comments}/>
+    }
+  }
+  btnHandler = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
     })
   }
+
 }
