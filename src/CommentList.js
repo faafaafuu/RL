@@ -18,7 +18,6 @@ export default class ComList extends Component {
     )
   }
   getComents() {
-    console.log(this.props.comments.length)
     if(!this.state.isOpen) return null
     const {comments} = this.props
     const comElements = comments.map((e) => <li key={e.id}><Comment c={e}/></li>)
